@@ -35,7 +35,7 @@ public class OrdersServlet extends HttpServlet {
         String page = "";
         switch (command) {
             case "Ok":
-                if (id != null) {
+                if (!id.equals("")) {
                     // edit.
                     ordersDAOImpl.add(getNewOrderByParam(id, date, clientId, goodsId, goodsCheckId, goodsCount, goodsCost), true);
                 } else if (date != null && !clientId.equals("")) {
