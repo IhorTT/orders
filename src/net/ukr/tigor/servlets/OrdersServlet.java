@@ -72,10 +72,12 @@ public class OrdersServlet extends HttpServlet {
             orderId = Integer.parseInt(id);
         }
         Order order = new Order(orderId, LocalDate.parse(date), new Client(Integer.parseInt(clientId), "", ""), 0);
-        ArrayList<String> arrListgoodsCheckId = new ArrayList<String>(Arrays.asList(goodsCheckId));
-        for (int i = 0; i < goodsId.length; i++) {
-            if (arrListgoodsCheckId.contains(goodsId[i])) {
-                order.addGood(new Good(Integer.parseInt(goodsId[i]), "", Double.parseDouble(goodsCost[i]), Double.parseDouble(goodsCount[i])));
+        if (goodsCheckId!=null) {
+            ArrayList<String> arrListgoodsCheckId = new ArrayList<String>(Arrays.asList(goodsCheckId));
+            for (int i = 0; i < goodsId.length; i++) {
+                if (arrListgoodsCheckId.contains(goodsId[i])) {
+                    order.addGood(new Good(Integer.parseInt(goodsId[i]), "", Double.parseDouble(goodsCost[i]), Double.parseDouble(goodsCount[i])));
+                }
             }
         }
         return order;
